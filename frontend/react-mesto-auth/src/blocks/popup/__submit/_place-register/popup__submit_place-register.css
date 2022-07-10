@@ -1,0 +1,16 @@
+.popup__submit_place-register {
+    background-color: var(--font-color);
+    color: var(--bg-dark-color);
+    margin-top: 216px;
+    margin-bottom: 15px;
+  }
+  
+  .popup__submit_place-register:hover{
+    opacity: 0.85;
+  }
+
+  @media screen and ( max-width: 920px ) {
+    .popup__submit_place-register {
+      margin-top: 170px;
+    }
+  }

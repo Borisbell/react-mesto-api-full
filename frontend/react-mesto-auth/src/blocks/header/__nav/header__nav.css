@@ -1,0 +1,14 @@
+.header__nav{
+    display: flex;
+    justify-content: space-between;
+}
+
+.header__nav p:not(:last-child) {
+    margin-right: 24px;
+}
+
+@media screen and ( max-width: 920px ) {
+  .header__nav{
+    margin-right: 30px;
+  }
+}

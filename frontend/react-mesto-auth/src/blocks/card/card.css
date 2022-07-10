@@ -1,0 +1,21 @@
+.card{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  width: 282px;
+  border-radius: 10px;
+  background-color: var(--font-color);
+}
+
+@media screen and ( max-width: 920px ) {
+  .card{
+    width: 100%;
+  }
+}
+
+@media screen and ( max-width: 320px ) {
+  .card{
+    width: 282px;
+  }
+}

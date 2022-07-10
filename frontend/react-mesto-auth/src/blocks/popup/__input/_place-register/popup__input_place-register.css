@@ -1,0 +1,6 @@
+.popup__input_place-register {
+  background-color: transparent;
+  border-bottom: solid 1px #CCCCCC;
+  color:var(--font-color);
+  margin-bottom: 30px;
+}

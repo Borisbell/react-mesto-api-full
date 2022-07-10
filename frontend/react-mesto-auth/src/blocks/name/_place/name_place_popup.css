@@ -1,0 +1,16 @@
+.name_place_popup{
+  margin-bottom: 54px;
+}
+
+@media screen and ( max-width: 768px ) {
+  .name_place_popup{
+    font-size: 18px;
+    line-height: 1.1;
+  }
+}
+
+@media screen and ( max-width: 420px ) {
+  .name_place_popup{
+    margin-bottom: 75px;
+  }
+}

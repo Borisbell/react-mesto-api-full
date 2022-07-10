@@ -1,0 +1,7 @@
+.name_place_tooltip {
+  width: 358px;
+  text-overflow:unset;
+  white-space: unset;
+  overflow: visible;
+  text-align: center;
+}
