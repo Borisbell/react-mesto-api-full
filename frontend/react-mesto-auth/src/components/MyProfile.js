@@ -18,7 +18,7 @@ function MyProfile(props) {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false); 
   const [isConfirmDeletePopupOpen, setIsConfirmDeletePopupOpen] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState(null); 
-  const [currentUser, setCurrentUser] = React.useState({name:'Жак', about:'Исследователь',avatar:ava,});
+  const [currentUser, setCurrentUser] = React.useState({name:'Жак', about:'Исследователь', avatar:ava,});
   const [deltedCardId, setDeltedCardId] = React.useState('');
   const [cards, setCards] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(false);
@@ -52,8 +52,7 @@ function MyProfile(props) {
     },[])  
 
   const handleLike = (card) => {
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
-
+    const isLiked = card.likes.some(i => i === currentUser._id);
     api.changeLikeCardStatus(card._id, isLiked, token)
     .then((newCard) => {
       setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
@@ -98,7 +97,7 @@ function MyProfile(props) {
     setIsLoading(true)
     api.editProfile(name, about, token)
       .then(res => {
-        setCurrentUser(res);
+        setCurrentUser(res.data);
       })
       .then(() => {
         handleClosePopup();
