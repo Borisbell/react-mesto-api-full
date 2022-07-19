@@ -24,8 +24,8 @@ app.use(requestLogger);
 const allowedCors = [
   'https://borisbell.nomoredomains.xyz',
   'http://borisbell.nomoredomains.xyz',
-  'localhost:3000',
-  'localhost:3001',
+  'http://localhost:3000',
+  'http://localhost:3001',
 ];
 app.use(cors({
   origin: allowedCors,
