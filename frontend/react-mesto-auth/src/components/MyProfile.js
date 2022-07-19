@@ -26,10 +26,12 @@ function MyProfile(props) {
 
   useEffect(() => {
     SetDataReady(false)
-  }, [])
+  }, []) 
+
+  const token = localStorage.getItem('jwt');
 
   useEffect(() => {
-    api.getProfile()
+    api.getProfile(token)
       .then((userInfo) => {
         setCurrentUser(userInfo);
         SetDataReady(true)
@@ -40,7 +42,7 @@ function MyProfile(props) {
     },[])
 
   useEffect(() => {
-    api.getInitialCards()
+    api.getInitialCards(token)
       .then((cardsInfo) => {
         setCards(cardsInfo);
       })
@@ -52,7 +54,7 @@ function MyProfile(props) {
   const handleLike = (card) => {
     const isLiked = card.likes.some(i => i._id === currentUser._id);
 
-    api.changeLikeCardStatus(card._id, isLiked)
+    api.changeLikeCardStatus(card._id, isLiked, token)
     .then((newCard) => {
       setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
     })
@@ -94,7 +96,7 @@ function MyProfile(props) {
 
   const handleUpdateUser = (name, about) => {
     setIsLoading(true)
-    api.editProfile(name, about)
+    api.editProfile(name, about, token)
       .then(res => {
         setCurrentUser(res);
       })
@@ -111,7 +113,7 @@ function MyProfile(props) {
 
   const handleCardDelete = () => {
     setIsLoading(true)
-    api.deleteCard(deltedCardId)
+    api.deleteCard(deltedCardId, token)
     .then(() => {
       setCards((state) => state.filter((c) => c._id !== deltedCardId));
     })
@@ -128,7 +130,7 @@ function MyProfile(props) {
 
   const handleUpdateAvatar = (avatar) => {
     setIsLoading(true)
-    api.updateAvatar(avatar)
+    api.updateAvatar(avatar, token)
       .then(res => {
         setCurrentUser(res);
       })
@@ -145,7 +147,7 @@ function MyProfile(props) {
 
   const handleAddPlaceSubmit = (name, link) => {
     setIsLoading(true)
-    api.addCard(name, link)
+    api.addCard(name, link, token)
     .then(newCard => {
       setCards([newCard, ...cards]);
     })
