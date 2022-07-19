@@ -1,4 +1,6 @@
+require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const { celebrate, Joi, errors } = require('celebrate');
@@ -18,6 +20,17 @@ mongoose.connect('mongodb://localhost:27017/mestodb');
 
 app.use(bodyParser.json());
 app.use(requestLogger);
+
+const allowedCors = [
+  'https://borisbell.nomoredomains.xyz',
+  'http://borisbell.nomoredomains.xyz',
+  'localhost:3000',
+  'localhost:3001',
+];
+app.use(cors({
+  origin: allowedCors,
+  credentials: true,
+}));
 
 app.post('/signin', celebrate({
   body: Joi.object().keys({
