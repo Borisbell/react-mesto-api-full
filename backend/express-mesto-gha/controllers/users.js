@@ -24,7 +24,7 @@ module.exports.getUser = (req, res, next) => {
       res.send(user);
     })
     .catch((err) => {
-      if (err.message === 'CastError' || 'ValidationError') {
+      if (err.message === 'CastError' || err.message === 'ValidationError') {
         next(new BadRequestError('Некорректные данные'));
       } else { next(err); }
     });
@@ -62,7 +62,7 @@ module.exports.createUser = (req, res, next) => {
     .catch((err) => {
       if (err.code === MONGO_DUPLICATE_ERROR_CODE) {
         next(new ConflictError('Это емейл уже занят'));
-      } else if (err.message === 'CastError' || 'ValidationError') {
+      } else if (err.message === 'CastError' || err.message === 'ValidationError') {
         next(new BadRequestError('Некорректные данные'));
       } else { next(err); }
     });
@@ -78,7 +78,7 @@ module.exports.updateUser = (req, res, next) => {
     .catch((err) => {
       if (err.message === 'NotFound') {
         next(new NotFoundError('Пользователь не найден'));
-      } else if (err.message === 'CastError' || 'ValidationError') {
+      } else if (err.message === 'CastError' || err.message === 'ValidationError') {
         next(new BadRequestError('Некорректные данные'));
       } else { next(err); }
     });
@@ -94,7 +94,7 @@ module.exports.updateUserAvatar = (req, res, next) => {
     .catch((err) => {
       if (err.message === 'NotFound') {
         next(new NotFoundError('Пользователь не найден'));
-      } else if (err.message === 'CastError' || 'ValidationError') {
+      } else if (err.message === 'CastError' || err.message === 'ValidationError') {
         next(new BadRequestError('Некорректные данные'));
       } else { next(err); }
     });
@@ -107,7 +107,7 @@ module.exports.login = (req, res, next) => {
     .findOne({ email }).select('+password')
     .then((user) => {
       if (!user) {
-        next(new UnAuthError('Не передан емейл или пароль'));
+        throw new UnAuthError('Неправильный емейл или пароль');
       }
 
       return Promise.all([
@@ -117,7 +117,7 @@ module.exports.login = (req, res, next) => {
     })
     .then(([user, isPasswordCorrect]) => {
       if (!isPasswordCorrect) {
-        next(new UnAuthError('Не передан емейл или пароль'));
+        throw new UnAuthError('Неправильный емейл или пароль');
       }
 
       return generateToken({ _id: user._id });

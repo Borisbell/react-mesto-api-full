@@ -20,7 +20,7 @@ module.exports.createCard = (req, res, next) => {
       res.send(card);
     })
     .catch((err) => {
-      if (err.message === 'CastError' || 'ValidationError') {
+      if (err.message === 'CastError' || err.message === 'ValidationError') {
         next(new BadRequestError('Некорректные данные'));
       } else { next(err); }
     });
@@ -55,8 +55,7 @@ module.exports.likeCard = (req, res, next) => {
     .catch((err) => {
       if (err.message === 'NotFound') {
         next(new NotFoundError('Пользователь не найден'));
-      }
-      if (err.message === 'CastError') {
+      } else if (err.message === 'CastError') {
         next(new BadRequestError('Некорректные данные'));
       } else { next(err); }
     });
@@ -73,8 +72,7 @@ module.exports.dislikeCard = (req, res, next) => {
     .catch((err) => {
       if (err.message === 'NotFound') {
         next(new NotFoundError('Пользователь не найден'));
-      }
-      if (err.message === 'CastError') {
+      } else if (err.message === 'CastError') {
         next(new BadRequestError('Некорректные данные'));
       } else { next(err); }
     });
