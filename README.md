@@ -1,7 +1,6 @@
 # react-mesto-api-full
 Проект `Mesto`, включающий фронтенд и бэкенд части приложения со следующими возможностями: авторизации и регистрации пользователей, операции с карточками и пользователями.
 
-IP: 158.160.9.18  
-[Ссылка на фронт](borisbell.nomoredomains.xyz)
-[Ссылка на бэк](api.borisbell.nomoredomains.xyz)
+Public IP: 158.160.9.18  
+[Ссылка на фронт](https://borisbell.nomoredomains.xyz)
 
