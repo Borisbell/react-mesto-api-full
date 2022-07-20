@@ -22,6 +22,6 @@
 * Express
 * MongodDB
 
-Public IP: 158.160.9.18  
+Public IP: 51.250.108.10  
 [Посмотреть проект](https://borisbell.nomoredomains.xyz)
 
